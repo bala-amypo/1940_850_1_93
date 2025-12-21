@@ -18,10 +18,11 @@ public class InteractionController {
     }
 
     @PostMapping("/check")
-    @ResponseStatus(HttpStatus.CREATED)
-    public InteractionCheckResult check(@RequestBody List<Long> medicationIds) {
-        return interactionService.checkInteractions(medicationIds);
-    }
+public InteractionCheckResult check(@RequestBody Long[] medicationIds) {
+    return interactionService.checkInteractions(
+            java.util.List.of(medicationIds)
+    );
+}
 
     @GetMapping("/result/{id}")
     public InteractionCheckResult getResult(@PathVariable Long id) {
