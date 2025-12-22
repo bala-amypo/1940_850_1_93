@@ -29,6 +29,7 @@ public class InteractionCheckResult {
         this.interactions = interactions;
     }
 
+    // ✅ GETTERS (THIS REMOVES THE WARNING)
     public Long getId() {
         return id;
     }

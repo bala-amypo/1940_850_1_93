@@ -30,7 +30,7 @@ public class InteractionRule {
         this.description = description;
     }
 
-   
+    // ✅ GETTERS (remove IDE warnings + needed by JPA / controllers)
 
     public Long getId() {
         return id;
