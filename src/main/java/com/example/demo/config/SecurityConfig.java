@@ -20,8 +20,8 @@ public class SecurityConfig {
 
         http
             .csrf(csrf -> csrf.disable())
-            .formLogin(form -> form.disable())    
-            .httpBasic(basic -> basic.disable())   
+            .formLogin(form -> form.disable())     // 🔥 DISABLE LOGIN PAGE
+            .httpBasic(basic -> basic.disable())   // 🔥 DISABLE BASIC AUTH
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
                     "/swagger-ui/**",
