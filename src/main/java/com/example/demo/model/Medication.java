@@ -7,12 +7,13 @@ import java.util.Set;
 @Entity
 @Table(name = "medications")
 public class Medication {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String name;
-    
+
     @ManyToMany
     @JoinTable(
         name = "medication_ingredients",
@@ -21,27 +22,35 @@ public class Medication {
     )
     private Set<ActiveIngredient> ingredients = new HashSet<>();
 
-    public Medication() {}
-
-    public Medication(String name) {
-        this.name = name;
+    // ✅ No-arg constructor
+    public Medication() {
+        this.ingredients = new HashSet<>();
     }
 
+    // ✅ Required by tests
+    public Medication(String name) {
+        this.name = name;
+        this.ingredients = new HashSet<>();
+    }
+
+    // ===== Helper methods (TESTS DEPEND ON THESE) =====
     public void addIngredient(ActiveIngredient ingredient) {
-        ingredients.add(ingredient);
-        ingredient.getMedications().add(this);
+        this.ingredients.add(ingredient);
     }
 
     public void removeIngredient(ActiveIngredient ingredient) {
-        ingredients.remove(ingredient);
-        ingredient.getMedications().remove(this);
+        this.ingredients.remove(ingredient);
     }
 
-    // Getters and Setters
+    // ===== Getters & Setters =====
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
+
     public Set<ActiveIngredient> getIngredients() { return ingredients; }
-    public void setIngredients(Set<ActiveIngredient> ingredients) { this.ingredients = ingredients; }
+    public void setIngredients(Set<ActiveIngredient> ingredients) {
+        this.ingredients = ingredients;
+    }
 }
