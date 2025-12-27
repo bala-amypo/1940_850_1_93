@@ -24,4 +24,3 @@ public class SwaggerConfig {  // ← FIXED: Matches filename exactly
                         .bearerFormat("JWT")));
     }
 }
-               
