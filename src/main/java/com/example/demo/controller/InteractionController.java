@@ -18,14 +18,16 @@ public class InteractionController {
     }
 
     @PostMapping("/check")
-    public ResponseEntity<InteractionCheckResult> checkInteractions(@RequestBody List<Long> medicationIds) {
-        InteractionCheckResult result = interactionService.checkInteractions(medicationIds);
-        return ResponseEntity.ok(result);
+    public ResponseEntity<InteractionCheckResult> checkInteractions(
+            @RequestBody List<Long> medicationIds) {
+        return ResponseEntity.ok(
+                interactionService.checkInteractions(medicationIds)
+        );
     }
 
     @GetMapping("/result/{id}")
-    public ResponseEntity<InteractionCheckResult> getResult(@PathVariable Long id) {
-        InteractionCheckResult result = interactionService.getResult(id);
-        return ResponseEntity.ok(result);
+    public ResponseEntity<InteractionCheckResult> getResult(
+            @PathVariable Long id) {
+        return ResponseEntity.ok(interactionService.getResult(id));
     }
 }

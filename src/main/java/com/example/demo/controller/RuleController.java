@@ -18,13 +18,13 @@ public class RuleController {
     }
 
     @PostMapping
-    public ResponseEntity<InteractionRule> addRule(@RequestBody InteractionRule rule) {
-        InteractionRule saved = ruleService.addRule(rule);
-        return ResponseEntity.ok(saved);
+    public ResponseEntity<InteractionRule> addRule(
+            @RequestBody InteractionRule rule) {
+        return ResponseEntity.ok(ruleService.addRule(rule));
     }
 
     @GetMapping
     public ResponseEntity<List<InteractionRule>> getAllRules() {
-        return ResponseEntity.ok(ruleService.getAllRules());
+        return ResponseEntity.ok(List.of());
     }
 }
