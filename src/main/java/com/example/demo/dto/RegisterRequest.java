@@ -1,35 +1,22 @@
-package com.example.demo.model;
+package com.example.demo.dto;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
+public class RegisterRequest {
     private String name;
-    
-    @Column(unique = true)
     private String email;
-    
     private String password;
-    
-    private String role = "USER";
+    private String role;
 
-    public User() {}
+    // Constructors
+    public RegisterRequest() {}
 
-    public User(String name, String email, String password, String role) {
+    public RegisterRequest(String name, String email, String password, String role) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.role = role != null ? role : "USER";
+        this.role = role;
     }
 
     // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
     public String getEmail() { return email; }
