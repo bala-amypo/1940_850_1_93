@@ -16,7 +16,8 @@ public class CatalogServiceImpl implements CatalogService {
     private final ActiveIngredientRepository ingredientRepository;
     private final MedicationRepository medicationRepository;
 
-    public CatalogServiceImpl(ActiveIngredientRepository ingredientRepository, MedicationRepository medicationRepository) {
+    public CatalogServiceImpl(ActiveIngredientRepository ingredientRepository, 
+                             MedicationRepository medicationRepository) {
         this.ingredientRepository = ingredientRepository;
         this.medicationRepository = medicationRepository;
     }
@@ -24,10 +25,7 @@ public class CatalogServiceImpl implements CatalogService {
     @Override
     public ActiveIngredient addIngredient(ActiveIngredient ingredient) {
         if (ingredientRepository.existsByName(ingredient.getName())) {
-            throw new ResourceNotFoundException("Ingredient already exists: " + ingredient.getName());
-        }
-        if (ingredient.getIngredients() == null || ingredient.getIngredients().isEmpty()) {
-            throw new IllegalArgumentException("Medication must have at least one ingredient");
+            throw new IllegalArgumentException("Ingredient already exists: " + ingredient.getName());
         }
         return ingredientRepository.save(ingredient);
     }
